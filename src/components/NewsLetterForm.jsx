@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { IoIosArrowForward } from "react-icons/io";
 // import { GoogleReCaptcha } from "react-google-recaptcha-v3";
 
-export const NewsletterForm = () => {
+export const NewsLetterForm = () => {
   
   const {
     handleSubmit,

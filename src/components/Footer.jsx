@@ -2,7 +2,7 @@ import React from "react"
 import { FaFacebookF, FaLinkedinIn, FaRegCopyright } from "react-icons/fa"
 import { BsYoutube, BsTwitter } from "react-icons/bs"
 import Link from "next/link"
-import { NewsletterForm } from "./NewsLetterForm"
+import { NewsLetterForm } from "./NewsLetterForm"
 import Image from "next/image"
 
 export default function Footer() {
