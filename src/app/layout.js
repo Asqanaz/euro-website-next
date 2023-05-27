@@ -1,5 +1,5 @@
-import Navbar from "../components/Navbar"
-import { Footer } from "../components/Footer"
+import Navbar from "@/components/Navbar"
+import Footer from "@/components/Footer"
 import "./globals.css"
 import ReCaptchaProvider from "@/providers/ReCaptchaProvider"
 import ReactQueryProvider from "@/providers/ReactQueryProvider"

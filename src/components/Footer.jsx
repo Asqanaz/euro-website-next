@@ -2,16 +2,22 @@ import React from "react"
 import { FaFacebookF, FaLinkedinIn, FaRegCopyright } from "react-icons/fa"
 import { BsYoutube, BsTwitter } from "react-icons/bs"
 import Link from "next/link"
-import { NewsletterForm } from "./NewsletterForm"
+import { NewsletterForm } from "./NewsLetterForm"
 import Image from "next/image"
 
-export const Footer = () => {
+export default function Footer() {
 	return (
 		<footer>
 			<div className="container flex flex-col mt-20">
 				<div className="footer-grid max-w-6xl w-full grid-col  mx-auhref lg:gap-20 gap-10 justify-between">
 					<div className="footer-grid-col grid lg:grid-flow-row grid-flow-col gap-y-4 lg:text-base text-sm">
-						<Image src="/images/eu-logo.svg" alt="IERA Alliance" className="aspect-square object-contain" width="75" height = "75" />
+						<Image
+							src="/images/eu-logo.svg"
+							alt="IERA Alliance"
+							className="aspect-square object-contain"
+							width="75"
+							height="75"
+						/>
 						<div className="flex flex-col gap-2">
 							<h4 className="text-secondary xl:text-xl text-lg">Stay Tuned</h4>
 							<NewsletterForm />
