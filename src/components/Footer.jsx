@@ -20,7 +20,7 @@ export default function Footer() {
 						/>
 						<div className="flex flex-col gap-2">
 							<h4 className="text-secondary xl:text-xl text-lg">Stay Tuned</h4>
-							<NewsletterForm />
+							<NewsLetterForm />
 							<p className="lg:text-sm text-[10px]">
 								By subscribing you agree with the{" "}
 								<span className="text-secondary underline underline-offset-1">privicy policy</span>

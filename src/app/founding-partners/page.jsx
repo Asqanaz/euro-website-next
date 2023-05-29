@@ -9,7 +9,7 @@ export default function FoundingPartners() {
 				<h2 className="text-secondary text-4xl lg:text-6xl font-semibold">Founding Partners</h2>
 				<div className="flex flex-col overflow-x-auto mt-16 md:p-4 gap-20">
 					{PARTNERS.map(partner => (
-						<div className="flex md:flex-row flex-col-reverse gap-10 justify-between w-full md:w-auto">
+						<div className="flex md:flex-row flex-col-reverse gap-10 justify-between w-full md:w-auto" key = {partner.id}>
 							<div className="flex-[60%] flex items-center justify-center">
 								<p className="lg:text-2xl text-lg md:text-left text-center">
 									<a

@@ -26,7 +26,7 @@ export async function News() {
 								</div>
 								<div className="flex justify-between flex-col h-full">
 									<div
-										className="line-clamp-[15] saf-line-clamp"
+										className="line-clamp-[15] saf-line-clamp text-lg text-primary"
 										dangerouslySetInnerHTML={{
 											__html:
 												news.description

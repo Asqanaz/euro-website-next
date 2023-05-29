@@ -5,41 +5,41 @@ import React, { useState, useEffect } from "react"
 import { Post } from "../components/Post"
 // import { Loader } from "../../components/common/Loader"
 import { Pagination } from "../components/Pagination"
-import { useQuery } from "@tanstack/react-query"
 import { filterBySearch } from "@/utils/filter"
 
 export default function PostPage({ params: { postType } }) {
-	const [page, setPage] = useState(1)
-
+	
 	const searchParams = useSearchParams()
 	const [posts, setPosts] = useState(null)
-
 	const router = useRouter()
 
 	const pathname = usePathname()
-
 	useEffect(() => {
-		let searchQuery = {
-			...Object.fromEntries(searchParams.entries())
-		}
+		const params = new URLSearchParams(searchParams)
 		if (!searchParams.has("page")) {
-			searchQuery = {
-				...searchQuery,
-				page: 1
-			}
+			console.log(searchParams.has("page"))
+			// searchQuery = {
+			// 	...searchQuery,
+			// 	page: 1
+			// }
+			console.log("render")
+
+			params.set("page", 1)
 		}
 
 		if (!searchParams.has("order")) {
-			searchQuery = {
-				...searchQuery,
-				order: "DESC"
-			}
+			// searchQuery = {
+			// 	...searchQuery,
+			// 	order: "DESC"
+			// }
+			console.log("render")
+			params.set("order", "DESC")
 		}
 
-		// console.log(searchQuery)
-		const urlFromSearchQuery = new URLSearchParams(searchQuery)
-		router.push(`${pathname}?${urlFromSearchQuery.toString()}`)
-	}, [])
+		router.push(`${pathname}?${params.toString()}`)
+	})
+
+	console.log(searchParams.toString())
 
 	const [queriesObj, setQueriesObj] = useState({
 		...Object.fromEntries(searchParams.entries()),
@@ -81,7 +81,10 @@ export default function PostPage({ params: { postType } }) {
 				</div>
 			)}
 			{/* {isLoading && <Loader />} */}
-			<Pagination count={posts?.count} page={page} setPage={setPage} limit={3} />
+			<Pagination count={posts?.count} 
+			// page={page}
+			// setPage={setPage}
+			limit={3} />
 		</div>
 	)
 }

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 
 export const OurGoals = () => {
@@ -5,7 +6,7 @@ export const OurGoals = () => {
     <section>
       <div className='container flex xl:flex-row flex-col-reverse justify-between gap-10'>
         <div className='flex items-center justify-center'>
-          <img src="/images/ourGoalsImg.svg" className='w-96' alt="img"/>
+          <Image src="/images/ourGoalsImg.svg" width = "500" height = "300" alt="Our goals"/>
         </div>
         <div className='w-auto lg:w-[824px] flex flex-col gap-6'>
           <h2 className='text-4xl text-secondary font-bold'>Our Goals</h2>

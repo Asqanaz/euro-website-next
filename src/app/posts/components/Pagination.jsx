@@ -1,29 +1,48 @@
 "use client"
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { useState } from "react"
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md"
 
-export const Pagination = ({ count, page, setPage, limit }) => {
+export const Pagination = ({ count, limit }) => {
 	const searchParams = useSearchParams()
 	const pathname = usePathname()
 	const router = useRouter()
 
+
+	const [page, setPage] = useState(searchParams.get("page"))
+
 	const params = new URLSearchParams(searchParams)
 
-	const pageCount = Array.from({ length: Math.ceil(count / limit) }, (v, k) => k + 1)
+	const pageCount = Array.from(
+		{ length: Math.ceil(count / limit) },
+		(v, k) => k + 1
+	)
 
 	const next = () => {
 		if (page !== pageCount[pageCount.length - 1]) {
-			setPage(p => p + 1)
+			setPage((p) => +p + 1)
 			params.set("page", page)
+			router.push(`${pathname}?${params.toString()}`)
 		}
 	}
 
 	const previous = () => {
 		if (page !== pageCount[0]) {
-			setPage(p => page - 1)
+			setPage((p) => +p - 1)
 			params.set("page", page)
+			router.push(`${pathname}?${params.toString()}`)
 		}
+	}
+
+	const handlePageSelect = (p) => {
+		setPage(p)
+
+		params.set("page", p)
+
+		console.log(params.toString())
+
+		router.push(`${pathname}?${params.toString()}`)
 	}
 
 	return (
@@ -36,12 +55,11 @@ export const Pagination = ({ count, page, setPage, limit }) => {
 					<button
 						key={index + 1}
 						className={`w-[46px] h-[46px] rounded-xl ${
-							page === pg ? "bg-secondary text-white" : "bg-white text-secondary"
+							page === pg
+								? "bg-secondary text-white"
+								: "bg-white text-secondary"
 						}  text-primary`}
-						onClick={() => {
-							params.set("page", pg)
-							// setPage(pg)
-						}}
+						onClick={() => handlePageSelect(pg)}
 					>
 						{pg}
 					</button>

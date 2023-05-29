@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 
 export const OurMission = () => {
@@ -9,7 +10,7 @@ export const OurMission = () => {
           <p className='md:text-3xl text-2xl md:leading-relaxed leading-relaxed text-primary '><span className='text-secondary'>IERA</span> builds bridges and develops active cooperation between European and Global Higher Education Institutions (HEIs) and Research and Technology Organizations (RTOs) with a focus on the Transcaucasian and Central Asian area to exchange know-how and best practices, promote international education and research with the aim of joining forces for future challenges.</p>
         </div>
         <div className='flex items-center justify-center'>
-          <img src="/images/actions-pic.webp" className='' alt="Our Mission"/>
+          <Image src="/images/actions-pic.webp" className='' width = "500" height = "300" alt="Our Mission"/>
         </div>
       </div>
     </section>
