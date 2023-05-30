@@ -9,8 +9,7 @@ export const Pagination = ({ count, limit }) => {
 	const pathname = usePathname()
 	const router = useRouter()
 
-
-	const [page, setPage] = useState(searchParams.get("page"))
+	const [page, setPage] = useState(searchParams.get("page") || 1)
 
 	const params = new URLSearchParams(searchParams)
 
@@ -35,13 +34,10 @@ export const Pagination = ({ count, limit }) => {
 		}
 	}
 
+
 	const handlePageSelect = (p) => {
 		setPage(p)
-
 		params.set("page", p)
-
-		console.log(params.toString())
-
 		router.push(`${pathname}?${params.toString()}`)
 	}
 
@@ -55,7 +51,7 @@ export const Pagination = ({ count, limit }) => {
 					<button
 						key={index + 1}
 						className={`w-[46px] h-[46px] rounded-xl ${
-							page === pg
+							String(page) === String(pg)
 								? "bg-secondary text-white"
 								: "bg-white text-secondary"
 						}  text-primary`}

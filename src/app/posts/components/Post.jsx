@@ -9,14 +9,15 @@ export const Post = ({ post }) => {
 		<Link
 			className="flex flex-col bg-input border-r overflow-hidden rounded-2xl cursor-pointer hover:shadow-xl transition-all"
 			key={post.title}
-			href={`/${post.type}/${post.id}`}
-			// role="link"
-			// tabIndex={0}
-			// onKeyDown={(e) =>
-			// 	e.code === "Enter" && router.push(`/${post.type}/${post.id}`)
-			// }
+			href={`/posts/${post.type}/${post.id}`}
 		>
-			<Image src={post.img} alt={post.title} width="500" height="300" className="aspect-[3/2] object-cover" />
+			<Image
+				src={post.img}
+				alt={post.title}
+				width="500"
+				height="300"
+				className="aspect-[3/2] object-cover"
+			/>
 			<div className="lg:p-6 p-4">
 				<p className="text-sm text-primary sm:h-[56px] line-clamp-3 saf-line-clamp">
 					{post.title} <br />
