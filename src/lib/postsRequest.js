@@ -1,5 +1,7 @@
 export const getNews = async () => {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}news-events?type=news&sort=DESC`)
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_BASE_URL}news-events?type=news&sort=DESC`
+	)
 
 	const data = await res.json()
 
@@ -9,7 +11,9 @@ export const getNews = async () => {
 }
 
 export const getEvent = async () => {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}news-events?type=event&sort=DESC`)
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_BASE_URL}news-events?type=event&sort=DESC`
+	)
 
 	const data = await res.json()
 
@@ -18,16 +22,30 @@ export const getEvent = async () => {
 	return data.result[0]
 }
 
-export const getAllPosts = async queries => {
+export const getAllPosts = async (queries) => {
 	// const { sort, startDate, endDate, type, limit, page } = queries
 
 	let queryParams = ""
-	Object.entries(queries).forEach(([key, value]) => (queryParams += `${key}=${value}&`))
+	Object.entries(queries).forEach(
+		([key, value]) => (queryParams += `${key}=${value}&`)
+	)
 
-	const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}news-events?${queryParams}`)
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_BASE_URL}news-events?${queryParams}`
+	)
 
 	// type=${type}&sort=${sort}&startDate=${startDate}&endDate=${endDate}&limit=${limit}&page=${page}
 	const data = await res.json()
 
 	return data
+}
+
+export const getPost = async (id) => {
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_BASE_URL}news-events/${id}`
+	)
+
+	const r = await res.json()
+
+	return r
 }

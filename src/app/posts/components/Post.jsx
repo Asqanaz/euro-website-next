@@ -9,7 +9,7 @@ export const Post = ({ post }) => {
 		<Link
 			className="flex flex-col bg-input border-r overflow-hidden rounded-2xl cursor-pointer hover:shadow-xl transition-all"
 			key={post.title}
-			href={`/posts/${post.type}/${post.id}`}
+			href={`/post/${post.id}`}
 		>
 			<Image
 				src={post.img}

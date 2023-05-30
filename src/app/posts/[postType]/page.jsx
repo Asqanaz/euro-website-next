@@ -47,8 +47,6 @@ export default function PostPage({ params: { postType } }) {
 		setPosts(r)
 	}
 
-	const filteredPosts = filterBySearch(searchParams.get("q"), posts?.result)
-
 	useEffect(() => {
 		setQueriesObj({
 			...queriesObj,
@@ -59,6 +57,8 @@ export default function PostPage({ params: { postType } }) {
 	useEffect(() => {
 		getAllPosts(queriesObj)
 	}, [queriesObj])
+
+	const filteredPosts = filterBySearch(searchParams.get("q"), posts?.result)
 
 	return (
 		<div className="relative w-full min-h-[calc(100vh-207px)] pb-[120px]">

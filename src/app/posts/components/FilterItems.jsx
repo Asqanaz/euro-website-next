@@ -13,7 +13,7 @@ export const FilterItems = ({ filterType, filterName, inputs }) => {
 	const pathname = usePathname()
 	const router = useRouter()
 
-	const [checked, setChecked] = useState(searchParams.has("order") && searchParams.get("order"))
+	const [checked, setChecked] = useState(searchParams.get("order") || "DESC")
 	
 	const handleChecked = e => {
 		const params = new URLSearchParams(searchParams)

@@ -20,19 +20,24 @@ export const Pagination = ({ count, limit }) => {
 
 	const next = () => {
 		if (page !== pageCount[pageCount.length - 1]) {
+			console.log("next")
 			setPage((p) => +p + 1)
-			params.set("page", page)
+			params.set("page", +page + 1)
 			router.push(`${pathname}?${params.toString()}`)
 		}
 	}
 
 	const previous = () => {
 		if (page !== pageCount[0]) {
+			console.log("prev")
+
 			setPage((p) => +p - 1)
-			params.set("page", page)
+			params.set("page", +page - 1)
 			router.push(`${pathname}?${params.toString()}`)
 		}
 	}
+
+	console.log(page)
 
 
 	const handlePageSelect = (p) => {
@@ -49,7 +54,7 @@ export const Pagination = ({ count, limit }) => {
 			<div className="flex flex-row gap-4">
 				{pageCount.map((pg, index) => (
 					<button
-						key={index + 1}
+						key={index}
 						className={`w-[46px] h-[46px] rounded-xl ${
 							String(page) === String(pg)
 								? "bg-secondary text-white"

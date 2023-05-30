@@ -1,6 +1,7 @@
 import { Filter } from "./components/Filter"
 
 export default function PostsLayout({ children }) {
+
 	return (
 		<section className="my-20">
 			<div className="container flex md:flex-row flex-col gap-20">

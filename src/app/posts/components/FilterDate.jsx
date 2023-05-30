@@ -1,5 +1,4 @@
 import React, { forwardRef, useEffect, useState } from "react"
-import { BsCalendar } from "react-icons/bs"
 import ReactDatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { format } from "date-fns"
@@ -14,7 +13,10 @@ export const FilterDate = ({ open }) => {
 
 	const [isOpen, setIsOpen] = useState(false)
 
-	const [dateRange, setDateRange] = useState([dateFormat(searchParams.get('startDate')), dateFormat(searchParams.get("endDate"))])
+	const [dateRange, setDateRange] = useState([
+		dateFormat(searchParams.get("startDate")) || "",
+		dateFormat(searchParams.get("endDate")) || "",
+	])
 
 	const [startDate, endDate] = dateRange
 
@@ -22,15 +24,18 @@ export const FilterDate = ({ open }) => {
 		if (!open) setIsOpen(false)
 	}, [open])
 
-
 	return (
-		<div className="" onClick={() => setIsOpen(!isOpen)} role="presentation">
+		<div
+			className=""
+			onClick={() => setIsOpen(!isOpen)}
+			role="presentation"
+		>
 			<ReactDatePicker
 				selectsRange={true}
 				startDate={startDate}
 				endDate={endDate}
 				placeholderText="Date / Time"
-				onChange={update => {
+				onChange={(update) => {
 					setDateRange(update)
 
 					const params = new URLSearchParams(searchParams)
