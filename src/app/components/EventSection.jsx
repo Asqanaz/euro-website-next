@@ -16,7 +16,7 @@ export async function EventSection() {
 						className="container lg:pt-20 pt-16 lg:pb-80 pb-48"
 					>
 						<div className="md:w-1/2 w-full min-w-96 flex flex-col gap-6">
-							<Link href = {`/posts/event/${firstEvent.id}}`} className="lg:text-2xl text-xl text-secondary cursor-pointer">{firstEvent.title}</Link>
+							<Link href = {`/posts/event/${firstEvent.id}`} className="lg:text-2xl text-xl text-secondary cursor-pointer">{firstEvent.title}</Link>
 							<div
 								className="line-clamp-3 sm:text-3xl text-xl sm:leading-relaxed leading-relaxed saf-line-clamp"
 								dangerouslySetInnerHTML={{

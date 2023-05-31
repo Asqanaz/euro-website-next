@@ -2,12 +2,14 @@ import React from "react"
 import { getAllPosts } from "@/lib/postsRequest"
 import Link from "next/link"
 
-export const LatestPosts = async ({ postId, postType = "news" }) => {
+export const LatestPosts = async ({ postId, postType }) => {
 	const posts = await getAllPosts({
 		type: postType,
+		limit: 4,
+		order: "DESC"
 	})
 
-	let content = posts?.result.filter((p) => p.id !== postId).slice(0, 4)
+	let content = posts?.result.filter((p) => p.id !== postId)
 
 	return (
 		<section className="container flex flex-col gap-4 py-14 px-10">
@@ -24,9 +26,10 @@ export const LatestPosts = async ({ postId, postType = "news" }) => {
 			</div>
 			<div className="w-full grid grid-cols-1 lg:grid-cols-2 place-items-[start stretch] gap-x-80 gap-y-10">
 				{content?.map((post) => {
+					console.log(post.id)
 					return (
 						<Link
-							href={`/post/${post.id}}`}
+							href={`/posts/${postType}/${post.id}`}
 							className="flex flex-col gap-8 py-8 border-t-primary border-t justify-between"
 							key={post.id}
 						>

@@ -37,8 +37,6 @@ export const Pagination = ({ count, limit }) => {
 		}
 	}
 
-	console.log(page)
-
 
 	const handlePageSelect = (p) => {
 		setPage(p)

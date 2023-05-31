@@ -4,14 +4,13 @@ import { dateFormat } from "@/utils/dateFormat"
 import { getPost } from "@/lib/postsRequest"
 import Image from "next/image"
 
-export default async function SingleNews({ params: { id } }) {
+export default async function SingleNews({ params: { id, postType } }) {
 	const type = "news"
 	const postData = await getPost(id)
 
 	const post = await postData
 
 	console.log(post)
-
 
 	return (
 		<div>
@@ -43,9 +42,9 @@ export default async function SingleNews({ params: { id } }) {
 						<Image
 							src={post.img}
 							alt={post.title}
-                            width = "700"
-                            height = "300"
-                            className="object-cover"
+							width="700"
+							height="300"
+							className="object-cover"
 						/>
 					</div>
 				</div>
@@ -58,9 +57,8 @@ export default async function SingleNews({ params: { id } }) {
 			</section>
 			<LatestPosts
 				postId={post.id}
-				postType={post.type}
+				postType={postType}
 			/>
 		</div>
 	)
 }
-

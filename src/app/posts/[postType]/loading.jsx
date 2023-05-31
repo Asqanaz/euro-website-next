@@ -1,6 +1,5 @@
-export default function LoadingPosts(){
+import { Loader } from "@/ui/loader/Loader"
 
-    return (
-        <h1>Loading...</h1>
-    )
+export default function LoadingPosts() {
+	return <Loader />
 }
