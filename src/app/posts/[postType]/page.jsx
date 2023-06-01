@@ -6,11 +6,18 @@ import { useQuery } from "@tanstack/react-query"
 import { Post } from "../components/Post"
 import { Pagination } from "../components/Pagination"
 import { filterBySearch } from "@/utils/filter"
+import { Loader } from "@/ui/loader/Loader"
 
 export default function PostPage({ params: { postType } }) {
 	const searchParams = useSearchParams()
 	const [posts, setPosts] = useState(null)
 	const router = useRouter()
+
+	const [queriesObj, setQueriesObj] = useState({
+		...Object.fromEntries(searchParams.entries()),
+		type: postType,
+		limit: 3
+	})
 
 	const pathname = usePathname()
 	useEffect(() => {
@@ -26,65 +33,43 @@ export default function PostPage({ params: { postType } }) {
 		router.push(`${pathname}?${params.toString()}`)
 	})
 
-	const [queriesObj, setQueriesObj] = useState({
-		...Object.fromEntries(searchParams.entries()),
-		type: postType,
-		limit: 3,
-	})
+	console.log(queriesObj)
 
-	const getAllPosts = async (queries) => {
+	const getAllPosts = async () => {
 		let queryParams = ""
-		Object.entries(queries).forEach(
+		Object.entries(queriesObj).forEach(
 			([key, value]) => (queryParams += `${key}=${value}&`)
 		)
 		const res = await fetch(
-			`${process.env.NEXT_PUBLIC_BASE_URL}news-events?${queryParams}`,
-			{
-				cache: "no-store",
-			}
+			`${process.env.NEXT_PUBLIC_BASE_URL}news-events?${queryParams}`
 		)
-		return res.json()
+		return await res.json()
 	}
 
-	const { data, isLoading } = useQuery({
-		queryKey: ["post"],
-		queryFn: getAllPosts,
-	})
-
+	const { data, isLoading } = useQuery(["posts", queriesObj], getAllPosts)
 
 	useEffect(() => {
 		setQueriesObj({
 			...queriesObj,
-			...Object.fromEntries(searchParams.entries()),
+			...Object.fromEntries(searchParams.entries())
 		})
 	}, [searchParams])
 
-	useEffect(() => {
-		getAllPosts(queriesObj)
-	}, [queriesObj])
-
-	console.log(data)
-	const filteredPosts = filterBySearch(searchParams.get("q"), posts?.result)
+	const filteredPosts = filterBySearch(searchParams.get("q"), data?.result)
 
 	return (
-		<div className="relative w-full min-h-[calc(100vh-207px)] pb-[120px]">
-			{filteredPosts && (
-				<div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 w-full">
-					{filteredPosts.map((post) => (
-						<Post
-							post={post}
-							key={post.title}
-						/>
-					))}
-				</div>
-			)}
+		<div className="relative min-h-[calc(100vh-207px)] w-full pb-[120px]">
+			<div className="grid w-full grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3">
+				{filteredPosts?.map((post) => (
+					<Post post={post} key={post.title} />
+				))}
+			</div>
 			{filteredPosts && filteredPosts.length === 0 && (
-				<h1 className="text-green-800 text-4xl">No results</h1>
+				<h1 className="text-4xl text-green-800">No results</h1>
 			)}
-			<Pagination
-				count={posts?.count}
-				limit={3}
-			/>
+
+			{isLoading && <Loader />}
+			<Pagination count={data?.count} limit={3} />
 		</div>
 	)
 }

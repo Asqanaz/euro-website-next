@@ -14,9 +14,11 @@ export const FilterDate = ({ open }) => {
 	const [isOpen, setIsOpen] = useState(false)
 
 	const [dateRange, setDateRange] = useState([
-		dateFormat(searchParams.get("startDate")) || "",
-		dateFormat(searchParams.get("endDate")) || "",
+		dateFormat(searchParams.get("startDate")),
+		dateFormat(searchParams.get("endDate"))
 	])
+
+	console.log(dateRange)
 
 	const [startDate, endDate] = dateRange
 
@@ -28,16 +30,15 @@ export const FilterDate = ({ open }) => {
 		<div
 			className=""
 			onClick={() => setIsOpen(!isOpen)}
-			role="presentation"
-		>
+			role="presentation">
 			<ReactDatePicker
 				selectsRange={true}
 				startDate={startDate}
 				endDate={endDate}
 				placeholderText="Date / Time"
+				isClearable={true}
 				onChange={(update) => {
 					setDateRange(update)
-
 					const params = new URLSearchParams(searchParams)
 					if (update[0]) {
 						params.set("startDate", format(update[0], "yyyy-MM-dd"))

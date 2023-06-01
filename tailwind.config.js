@@ -46,10 +46,9 @@ module.exports = {
 				// homeBackground: "url(../public/images/home-bg.webp)",
 				// "about-box": "url(../public/images/about-us-box.webp)"
 				"about-bg": "url(/images/about-bg.png)",
-				"mobile-about-bg": "url(/images/mobile-about-bg.webp)",
-
+				"mobile-about-bg": "url(/images/mobile-about-bg.webp)"
 			}
 		}
 	},
-	plugins: []
+	plugins: [require("prettier-plugin-tailwindcss")]
 }
