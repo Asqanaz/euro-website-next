@@ -1,7 +1,7 @@
-export const addContact = async body => {
+export const addContact = async (body) => {
 	const post = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}subscribe`, {
 		method: "POST",
-		body: JSON.stringify(body)
+		body: JSON.stringify(body),
 	})
 
 	const res = await post.json()
@@ -10,5 +10,12 @@ export const addContact = async body => {
 	// 	return "Captcha token is invalid"
 	// }
 
-    return post
+	return post
+}
+
+export const addNewsLetter = async (body) => {
+	const post = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}`, {
+		method: "POST",
+		body: JSON.stringify(body),
+	})
 }
